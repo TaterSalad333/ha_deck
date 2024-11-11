@@ -35,8 +35,8 @@ LGFX::LGFX(void)
     cfg.pin_rst = 4;                 // Reset pin
     cfg.pin_busy = -1;               // Busy pin (if available, -1 if not used)
 
-    cfg.panel_width = 240;           // ST7789V width
-    cfg.panel_height = 320;          // ST7789V height
+    cfg.panel_width = 800;           // ST7789V width
+    cfg.panel_height = 480;          // ST7789V height
     cfg.offset_x = 0;                // Offset for ST7789V
     cfg.offset_y = 0;
     cfg.offset_rotation = 0;         // Adjust if needed based on orientation
