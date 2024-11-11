@@ -6,7 +6,8 @@
 #include "LGFX.h"
 #include "lvgl.h"
 
-LV_IMG_DECLARE(bg_480x320);
+// Update background image for 800x480 resolution
+LV_IMG_DECLARE(bg_800x480);
 
 namespace esphome {
 namespace hd_device {
