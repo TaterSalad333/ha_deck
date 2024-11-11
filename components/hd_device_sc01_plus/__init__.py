@@ -44,3 +44,7 @@ async def to_code(config):
 
     brightness = config.get(CONF_BRIGHTNESS)
     cg.add(var.set_brightness(brightness))
+
+    # Adjust panel resolution settings here if needed
+    cg.add(var.set_resolution(800, 480))  # For your screen resolution
+
