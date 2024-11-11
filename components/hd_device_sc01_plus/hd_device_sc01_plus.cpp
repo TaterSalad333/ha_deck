@@ -5,7 +5,7 @@ namespace hd_device {
 
 static const char *const TAG = "HD_DEVICE";
 static lv_disp_draw_buf_t draw_buf;
-static lv_color_t *buf = (lv_color_t *)heap_caps_malloc(TFT_HEIGHT * 20 * sizeof(lv_color_t), MALLOC_CAP_DMA);
+static lv_color_t *buf = (lv_color_t *)heap_caps_malloc(800 * 20 * sizeof(lv_color_t), MALLOC_CAP_DMA); // Updated for 800x480 resolution
 
 LGFX lcd;
 
@@ -18,10 +18,10 @@ void IRAM_ATTR flush_pixels(lv_disp_drv_t *disp, const lv_area_t *area, lv_color
     uint32_t h = (area->y2 - area->y1 + 1);
     uint32_t len = w * h;
 
-    lcd.startWrite();                            /* Start new TFT transaction */
-    lcd.setAddrWindow(area->x1, area->y1, w, h); /* set the working window */
+    lcd.startWrite();
+    lcd.setAddrWindow(area->x1, area->y1, w, h);
     lcd.writePixels((uint16_t *)&color_p->full, len, true);
-    lcd.endWrite();                              /* terminate TFT transaction */
+    lcd.endWrite();
 
     lv_disp_flush_ready(disp);
 }
@@ -46,12 +46,12 @@ void HaDeckDevice::setup() {
 
     lcd.init();
 
-    lv_disp_draw_buf_init(&draw_buf, buf, NULL, TFT_HEIGHT * 20);
+    lv_disp_draw_buf_init(&draw_buf, buf, NULL, 800 * 20);  // Updated for 800x480 resolution
 
     static lv_disp_drv_t disp_drv;
     lv_disp_drv_init(&disp_drv);
-    disp_drv.hor_res = TFT_WIDTH;
-    disp_drv.ver_res = TFT_HEIGHT;
+    disp_drv.hor_res = 800;  // Set the correct horizontal resolution
+    disp_drv.ver_res = 480;  // Set the correct vertical resolution
     disp_drv.rotated = 1;
     disp_drv.sw_rotate = 1;
     disp_drv.flush_cb = flush_pixels;
@@ -72,7 +72,7 @@ void HaDeckDevice::setup() {
     lcd.setBrightness(brightness_);
 
     lv_obj_t * bg_image = lv_img_create(lv_scr_act());
-    lv_img_set_src(bg_image, &bg_480x320);
+    lv_img_set_src(bg_image, &bg_800x480);  // Ensure the background image matches the resolution
     lv_obj_set_parent(bg_image, lv_scr_act());
 }
 
