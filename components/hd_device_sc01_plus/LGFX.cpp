@@ -69,9 +69,9 @@ LGFX::LGFX(void)
     auto cfg = _touch_instance.config();
 
     cfg.x_min = 0;
-    cfg.x_max = 239;                 // Max X for 240x320 resolution
+    cfg.x_max = 799;                 // Max X for 800x480 resolution
     cfg.y_min = 0;
-    cfg.y_max = 319;                 // Max Y for 240x320 resolution
+    cfg.y_max = 479;                 // Max Y for 800x480 resolution
     cfg.pin_int = 7;                 // Interrupt pin for GT911
     cfg.bus_shared = true;
     cfg.offset_rotation = 0;         // Adjust if touch orientation needs to be rotated
