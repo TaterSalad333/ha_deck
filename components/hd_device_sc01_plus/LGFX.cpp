@@ -57,4 +57,25 @@ LGFX::LGFX(void)
     auto cfg = _touch_instance.config();
 
     cfg.x_min = 0;                    // Touchscreen min x
-    cfg.x_max = 799;                  /
+    cfg.x_max = 799;                  // Touchscreen max x
+    cfg.y_min = 0;                    // Touchscreen min y
+    cfg.y_max = 479;                  // Touchscreen max y
+    cfg.pin_int = 7;                  // Touch interrupt pin
+    cfg.bus_shared = true;            // Bus sharing flag
+    cfg.offset_rotation = 0;          // Rotation offset
+
+    cfg.i2c_port = 1;                 // I2C port
+    cfg.i2c_addr = 0x38;              // Touch I2C address
+    cfg.pin_sda = 6;                  // SDA pin
+    cfg.pin_scl = 5;                  // SCL pin
+    cfg.freq = 400000;                // I2C frequency
+
+    _touch_instance.config(cfg);
+    _panel_instance.setTouch(&_touch_instance);
+  }
+
+  setPanel(&_panel_instance);         // Set the panel instance
+}
+
+}  // namespace hd_device
+}  // namespace esphome
